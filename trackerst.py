@@ -5,6 +5,14 @@ import os
 import csv
 import matplotlib.pyplot as plt
 import time
+from pydrive2.auth import GoogleAuth
+from pydrive2.drive import GoogleDrive
+
+gauth = GoogleAuth()
+gauth.LoadServiceConfigFile("service_account.json")
+drive = GoogleDrive(gauth)
+
+
 # Ensure files exist with proper headers
 if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False
