@@ -73,10 +73,16 @@ if st.session_state["logged_in"]:
                 st.write("----------------------------")   # vertical gap
                 # st.write("")   # more gap
                 if st.button("View Budget"):
-                    budget_df = pd.read_csv("budget.csv", header=None)
-                    budget = budget_df.iloc[:, 0].sum()
-                    st.metric(label="Total Budget", value=f'₹{float(budget)}')
+                    if os.path.exists("budget.csv"):
 
+                        budget_df = pd.read_csv("budget.csv", header=None)
+                        budget = budget_df.iloc[:, 0].sum()
+                        st.metric(label="Total Budget", value=f'₹{float(budget)}')
+                    else:
+                        budget_df = pd.read_csv("sample_budget.csv", header=None)
+                        budget = budget_df.iloc[:, 0].sum()
+                        st.metric(label="Total Budget", value=f'₹{float(budget)}')
+                        
 
         # col1, col2 = st.columns([2,1])
         with st.container():
