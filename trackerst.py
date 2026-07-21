@@ -13,6 +13,17 @@ creds_json = os.getenv("GOOGLE_SERVICE_ACCOUNT")
 creds_dict = json.loads(creds_json)
 gauth = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, ["https://www.googleapis.com/auth/drive"])
 drive = GoogleDrive(gauth)
+def load_csv(file_id):
+    file = drive.CreateFile({'id': file_id})
+    content = file.GetContentString()
+    df = pd.read_csv(io.StringIO(content))
+    return df
+
+def save_csv(df, file_id):
+    df.to_csv("temp.csv", index=False)
+    file = drive.CreateFile({'id': file_id})
+    file.SetContentFile("temp.csv")
+    file.Upload()
 
 # Ensure files exist with proper headers
 if "logged_in" not in st.session_state:
