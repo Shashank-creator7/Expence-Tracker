@@ -5,11 +5,11 @@ import os
 import csv
 import matplotlib.pyplot as plt
 import time
-from pydrive2.auth import ServiceAccountCredentials
-from pydrive2.drive import GoogleDrive
+# from pydrive2.auth import ServiceAccountCredentials
+# from pydrive2.drive import GoogleDrive
 
-gauth = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", ["https://www.googleapis.com/auth/drive"])
-drive = GoogleDrive(gauth)
+# gauth = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", ["https://www.googleapis.com/auth/drive"])
+# drive = GoogleDrive(gauth)
 
 # Ensure files exist with proper headers
 if "logged_in" not in st.session_state:
